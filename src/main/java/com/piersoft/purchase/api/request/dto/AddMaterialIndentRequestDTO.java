@@ -2,8 +2,6 @@ package com.piersoft.purchase.api.request.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,10 +15,13 @@ import java.util.Random;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class AddMaterialIndentRequestDTO {
 
     private String orderId;
+    private String projectId;
+    private String projectDesc;
+    private String activityId;
+    private String activityDesc;
     private String itemId;
     private String itemDesc;
     private String categoryId;
@@ -29,18 +30,21 @@ public class AddMaterialIndentRequestDTO {
     private String uom;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss[.SSS][.SS][.S]")
     private LocalDateTime plannedDate;
-    private String projectId;
-    private String projectDesc;
-    private String activityId;
-    private String activityDesc;
-    private LocalDateTime createdDate = LocalDateTime.now();
+    @CreatedDate
+    private LocalDateTime createdDate;
+    private LocalDateTime lastUpdatedTime;
     private Double budgetedQty = new Random().nextDouble();
     private Double inventory = new Random().nextDouble();
     private Double procuredTillDate = new Random().nextDouble();
     private String userId;
     private String username;
-    private Double cmp = new Random().nextDouble();
+    private Double cmp ;
     private Double variance;
     private String status;
+    private String subStatus;
+    private String woId;
+    private String prId;
+    private String rfqId;
+    private String poId;
 
 }
