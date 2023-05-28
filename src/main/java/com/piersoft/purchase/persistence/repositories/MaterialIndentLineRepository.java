@@ -18,10 +18,10 @@ public interface MaterialIndentLineRepository extends CrudRepository<MaterialInd
 
     @Transactional
     @Modifying
-    @Query("update  MaterialIndentLine  set status = :status WHERE orderId = :orderId")
-    void updateMaterialIndentLineStatus(@Param("orderId") String orderId, @Param("status") String status);
+    @Query("update  MaterialIndentLine  set status = :status, subStatus = :subStatus WHERE orderId = :orderId")
+    void updateMaterialIndentLineStatus(@Param("orderId") String orderId, @Param("status") String status, @Param("subStatus")String subStatus);
 
-    @Query("select e  from MaterialIndentLine e  WHERE status = :status")
+    @Query("select e  from MaterialIndentLine e  WHERE status != :status")
     List<MaterialIndentLine> fetchAllActiveMaterialIndentLines(@Param("status") String status);
 
     @Query("select e  from MaterialIndentLine e  WHERE orderId = :orderId")
@@ -29,4 +29,12 @@ public interface MaterialIndentLineRepository extends CrudRepository<MaterialInd
 
     @Query("select e  from MaterialIndentLine e  WHERE projectId = :projectId and categoryId = :categoryId")
     List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForProjectCodeAndCategory(String projectId, String categoryId);
+
+    @Transactional
+    @Query("update  MaterialIndentLine  set status = :status, subStatus = :subStatus WHERE id = :lineId")
+    void updateMaterialIndentLineStatusAndSubStatus(String lineId, String status, String subStatus);
+
+    @Transactional
+    @Query("update  MaterialIndentLine  set subStatus = :subStatus WHERE id = :lineId")
+    void updateMaterialIndentLineSubStatus(String lineId, String subStatus);
 }

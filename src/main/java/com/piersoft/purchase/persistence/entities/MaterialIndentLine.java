@@ -36,6 +36,7 @@ public class MaterialIndentLine {
     private String activityId;
     private String activityDesc;
     private LocalDateTime createdDate;
+    private LocalDateTime lastUpdatedTime;
     private Double budgetedQty;
     private Double inventory;
     private Double procuredTillDate;
@@ -44,5 +45,10 @@ public class MaterialIndentLine {
     private Double cmp;
     private Double variance;
     private String status;
+    private String subStatus;
+    private String woId;
+    private String prId;
+    private String rfqId;
+    private String poId;
 
 }

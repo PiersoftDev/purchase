@@ -21,12 +21,12 @@ public class MaterialIndentLineServiceImpl implements MaterialIndentLineService 
 
     @Override
     public void submitMaterialIndentRequest(String orderId) {
-        materialIndentLineRepository.updateMaterialIndentLineStatus(orderId,"NEW");
+        materialIndentLineRepository.updateMaterialIndentLineStatus(orderId,"Item Requested","NEW");
     }
 
     @Override
     public List<MaterialIndentLine> fetchAllActiveMaterialIndentLines() {
-        return materialIndentLineRepository.fetchAllActiveMaterialIndentLines("NEW");
+        return materialIndentLineRepository.fetchAllActiveMaterialIndentLines("Delivered");
     }
 
     @Override
@@ -37,5 +37,15 @@ public class MaterialIndentLineServiceImpl implements MaterialIndentLineService 
     @Override
     public List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForProjectCodeAndCategory(String projectCode, String categoryId) {
         return materialIndentLineRepository.fetchAllActiveMaterialIndentLinesForProjectCodeAndCategory(projectCode, categoryId);
+    }
+
+    @Override
+    public void updateMaterialIndentLineStatusAndSubStatus(String lineId, String status, String subStatus) {
+        materialIndentLineRepository.updateMaterialIndentLineStatusAndSubStatus(lineId, status, subStatus);
+    }
+
+    @Override
+    public void updateMaterialIndentLineSubStatus(String lineId, String subStatus) {
+        materialIndentLineRepository.updateMaterialIndentLineSubStatus(lineId, subStatus);
     }
 }

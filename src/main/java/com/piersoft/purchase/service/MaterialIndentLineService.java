@@ -15,4 +15,8 @@ public interface MaterialIndentLineService {
     List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForOrderId(String orderId);
 
     List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForProjectCodeAndCategory(String projectCode, String categoryId);
+
+    void updateMaterialIndentLineStatusAndSubStatus(String lineId, String status, String subStatus);
+
+    void updateMaterialIndentLineSubStatus(String lineId, String subStatus);
 }
