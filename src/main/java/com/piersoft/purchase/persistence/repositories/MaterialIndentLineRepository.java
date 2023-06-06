@@ -31,10 +31,12 @@ public interface MaterialIndentLineRepository extends CrudRepository<MaterialInd
     List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForProjectCodeAndCategory(String projectId, String categoryId);
 
     @Transactional
+    @Modifying
     @Query("update  MaterialIndentLine  set status = :status, subStatus = :subStatus WHERE id = :lineId")
-    void updateMaterialIndentLineStatusAndSubStatus(String lineId, String status, String subStatus);
+    void updateMaterialIndentLineStatusAndSubStatus(Long lineId, String status, String subStatus);
 
     @Transactional
+    @Modifying
     @Query("update  MaterialIndentLine  set subStatus = :subStatus WHERE id = :lineId")
-    void updateMaterialIndentLineSubStatus(String lineId, String subStatus);
+    void updateMaterialIndentLineSubStatus(Long lineId, String subStatus);
 }

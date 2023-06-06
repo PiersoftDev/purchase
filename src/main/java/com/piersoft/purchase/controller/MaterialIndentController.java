@@ -99,7 +99,7 @@ public class MaterialIndentController {
             @ApiResponse(code = 404, message = "Not found - no lines found")
     })
     @PutMapping(value = "/{lineId}/{status}/{subStatus}")
-    public ResponseEntity<List<MaterialIndentLine>> updateMaterialIndentLineStatusAndSubStatus(@PathVariable String lineId, @PathVariable String status, @PathVariable String subStatus){
+    public ResponseEntity<List<MaterialIndentLine>> updateMaterialIndentLineStatusAndSubStatus(@PathVariable Long lineId, @PathVariable String status, @PathVariable String subStatus){
         LOGGER.debug("Updating material indent line status and sub status" );
         materialIndentLineService.updateMaterialIndentLineStatusAndSubStatus(lineId, status, subStatus);
         LOGGER.debug("Updated material indent line status and sub status" );
@@ -113,7 +113,7 @@ public class MaterialIndentController {
             @ApiResponse(code = 404, message = "Not found - no lines found")
     })
     @PutMapping(value = "/{lineId}/{subStatus}")
-    public ResponseEntity<List<MaterialIndentLine>> updateMaterialIndentLineSubStatus(@PathVariable String lineId, @PathVariable String subStatus){
+    public ResponseEntity<List<MaterialIndentLine>> updateMaterialIndentLineSubStatus(@PathVariable Long lineId, @PathVariable String subStatus){
         LOGGER.debug("Updating material indent line sub status to: "+subStatus );
         materialIndentLineService.updateMaterialIndentLineSubStatus(lineId, subStatus);
         LOGGER.debug("Updated material indent line sub status to: "+subStatus );

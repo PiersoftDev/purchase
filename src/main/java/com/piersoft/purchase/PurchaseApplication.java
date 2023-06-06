@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableWebMvc
 public class PurchaseApplication {
 
-	@Value("${server.http.port:9091}")
+	@Value("${server.http.port:9090}")
 	private int port;
 
 	public static void main(String[] args) {

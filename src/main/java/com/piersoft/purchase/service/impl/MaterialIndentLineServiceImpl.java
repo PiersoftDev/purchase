@@ -4,6 +4,7 @@ import com.piersoft.purchase.persistence.entities.MaterialIndentLine;
 import com.piersoft.purchase.persistence.repositories.MaterialIndentLineRepository;
 import com.piersoft.purchase.service.MaterialIndentLineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,12 +41,13 @@ public class MaterialIndentLineServiceImpl implements MaterialIndentLineService 
     }
 
     @Override
-    public void updateMaterialIndentLineStatusAndSubStatus(String lineId, String status, String subStatus) {
+    public void updateMaterialIndentLineStatusAndSubStatus(Long lineId, String status, String subStatus) {
         materialIndentLineRepository.updateMaterialIndentLineStatusAndSubStatus(lineId, status, subStatus);
     }
 
     @Override
-    public void updateMaterialIndentLineSubStatus(String lineId, String subStatus) {
+    public void updateMaterialIndentLineSubStatus(Long lineId, String subStatus) {
         materialIndentLineRepository.updateMaterialIndentLineSubStatus(lineId, subStatus);
     }
+
 }
