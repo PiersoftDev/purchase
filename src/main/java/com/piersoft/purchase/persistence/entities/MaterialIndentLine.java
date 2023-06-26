@@ -46,9 +46,10 @@ public class MaterialIndentLine {
     private Double variance;
     private String status;
     private String subStatus;
-    private String woId;
-    private String prId;
-    private String rfqId;
-    private String poId;
+    private Long woId;
+    private Long prId;
+    private Long rfqId;
+    private Long poId;
+    private String comments;
 
 }

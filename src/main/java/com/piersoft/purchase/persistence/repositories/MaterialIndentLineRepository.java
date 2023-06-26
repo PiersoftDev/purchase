@@ -39,4 +39,36 @@ public interface MaterialIndentLineRepository extends CrudRepository<MaterialInd
     @Modifying
     @Query("update  MaterialIndentLine  set subStatus = :subStatus WHERE id = :lineId")
     void updateMaterialIndentLineSubStatus(Long lineId, String subStatus);
+
+    @Transactional
+    @Modifying
+    @Query("update  MaterialIndentLine  set subStatus = :subStatus, comments = :comments WHERE id = :lineId")
+    void updateMaterialIndentLineComments(Long lineId, String subStatus, String comments);
+
+    @Query("select e  from MaterialIndentLine e  WHERE projectId = :projectId and categoryId = :categoryId and status = 'Purchase Request' and subStatus = 'NEW'")
+    List<MaterialIndentLine> fetchAllActivePurchaseMaterialIndentLinesForProjectIdAndCategory(String projectId, String categoryId);
+
+
+    @Modifying
+    @Transactional
+    @Query("update MaterialIndentLine e set e.rfqId = :rfqId, e.status = 'RFQ', e.subStatus = 'NEW' where e.id in :lineIds")
+    void addMaterialIndentLinesToRfq(Long rfqId, List<Long> lineIds);
+
+
+    @Query("select e  from MaterialIndentLine e  WHERE rfqId = :rfqId")
+    List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfqId(Long rfqId);
+
+    @Query("select e  from MaterialIndentLine e  WHERE e.status = 'RFQ' and e.subStatus = 'APPROVED'")
+    List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfq();
+
+    @Modifying
+    @Transactional
+    @Query("update MaterialIndentLine e  set e.subStatus = 'APPROVED' where e.rfqId = :rfqId")
+    void updateRFQStatusToApproveByRFQId(Long rfqId);
+
+    @Query("select e  from MaterialIndentLine e  WHERE e.status = 'RFQ' and e.subStatus = 'APPROVED' and e.rfqId = :rfqId")
+    List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfqApproved(Long rfqId);
+
+    @Query("select e  from MaterialIndentLine e  WHERE e.status = 'RFQ' and e.subStatus = 'APPROVED'")
+    List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfqApproved();
 }

@@ -42,6 +42,7 @@ public class AddMaterialIndentRequestDTO {
     private Double cmp ;
     private Double variance;
     private String status;
+    private String comments;
     private String subStatus;
     private String woId;
     private String prId;

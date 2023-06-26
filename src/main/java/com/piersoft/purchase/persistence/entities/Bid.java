@@ -16,18 +16,25 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class RequestForQuotation {
-
+public class Bid {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String projectId;
-    private String projectDesc;
-    private String categoryId;
-    private String categoryDesc;
-    private LocalDate plannedDate;
+    private Long rfqId;
+    private Long lineId;
+    private String itemId;
+    private String itemDescription;
+    private Double quantity;
+    private String uom;
+    private String vendorId;
+    private String vendorName;
     private String warehouseId;
-    private String warehouseDesc;
+    private String warehouseName;
+    private Double unitPrice;
+    private Double totalAmount;
+    private String currency;
     private String status;
-    private LocalDate createdDate;
+    private LocalDate possibleDeliveryDate;
+    private LocalDate bidCreatedDate;
+    private LocalDate bidUpdatedDate;
 }

@@ -2,6 +2,7 @@ package com.piersoft.purchase.service.impl;
 
 import com.piersoft.purchase.persistence.entities.MaterialIndentLine;
 import com.piersoft.purchase.persistence.repositories.MaterialIndentLineRepository;
+import com.piersoft.purchase.service.MDMService;
 import com.piersoft.purchase.service.MaterialIndentLineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -15,8 +16,13 @@ public class MaterialIndentLineServiceImpl implements MaterialIndentLineService 
     @Autowired
     private MaterialIndentLineRepository materialIndentLineRepository;
 
+    @Autowired
+    private MDMService mdmService;
+
     @Override
     public void addMaterialIndentLine(MaterialIndentLine materialIndentLine) {
+        mdmService.getCostTransaction(materialIndentLine.getProjectId(), materialIndentLine.getActivityId(), materialIndentLine.getItemId());
+        mdmService.getMaterialBudget(materialIndentLine.getProjectId(), materialIndentLine.getCategoryId(), materialIndentLine.getItemId());
         materialIndentLineRepository.save(materialIndentLine);
     }
 
@@ -48,6 +54,47 @@ public class MaterialIndentLineServiceImpl implements MaterialIndentLineService 
     @Override
     public void updateMaterialIndentLineSubStatus(Long lineId, String subStatus) {
         materialIndentLineRepository.updateMaterialIndentLineSubStatus(lineId, subStatus);
+    }
+
+    @Override
+    public void updateMaterialIndentLineComments(Long lineId, String subStatus, String comments) {
+        materialIndentLineRepository.updateMaterialIndentLineComments(lineId, subStatus, comments);
+    }
+
+    @Override
+    public List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForProjectIdAndCategory(String projectId, String categoryId) {
+       return materialIndentLineRepository.fetchAllActivePurchaseMaterialIndentLinesForProjectIdAndCategory(projectId, categoryId);
+
+    }
+
+    @Override
+    public void addMaterialIndentLinesToRfq(Long rfqId, List<Long> lineIds) {
+        materialIndentLineRepository.addMaterialIndentLinesToRfq(rfqId, lineIds);
+    }
+
+    @Override
+    public List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfqId(Long rfqId) {
+        return  materialIndentLineRepository.fetchAllActiveMaterialIndentLinesForRfqId(rfqId);
+    }
+
+    @Override
+    public List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfq() {
+        return materialIndentLineRepository.fetchAllActiveMaterialIndentLinesForRfq();
+    }
+
+    @Override
+    public void updateRFQStatusToApproveByRFQId(Long rfqId) {
+        materialIndentLineRepository.updateRFQStatusToApproveByRFQId(rfqId);
+    }
+
+    @Override
+    public List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfqApprovedByRFQId(Long rfqId) {
+        return materialIndentLineRepository.fetchAllActiveMaterialIndentLinesForRfqApproved(rfqId);
+    }
+
+    @Override
+    public List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfqApproved() {
+        return materialIndentLineRepository.fetchAllActiveMaterialIndentLinesForRfqApproved();
     }
 
 }

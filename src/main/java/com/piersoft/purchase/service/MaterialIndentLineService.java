@@ -19,4 +19,20 @@ public interface MaterialIndentLineService {
     void updateMaterialIndentLineStatusAndSubStatus(Long lineId, String status, String subStatus);
 
     void updateMaterialIndentLineSubStatus(Long lineId, String subStatus);
+
+    void updateMaterialIndentLineComments(Long lineId, String subStatus, String comments);
+
+    List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForProjectIdAndCategory(String projectId, String categoryId);
+
+    void addMaterialIndentLinesToRfq(Long rfqId, List<Long> lineIds);
+
+    List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfqId(Long rfqId);
+
+    List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfq();
+
+    void updateRFQStatusToApproveByRFQId(Long rfqId);
+
+    List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfqApprovedByRFQId(Long rfqId);
+
+    List<MaterialIndentLine> fetchAllActiveMaterialIndentLinesForRfqApproved();
 }

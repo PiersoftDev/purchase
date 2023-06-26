@@ -6,9 +6,15 @@ import java.util.List;
 
 public interface RFQService {
 
-    void createRFQ(RequestForQuotation requestForQuotation);
+    RequestForQuotation createRFQ(RequestForQuotation requestForQuotation);
     
     List<RequestForQuotation> listAllRFQs();
 
     List<RequestForQuotation> listAllRFQsForProjectCodeAndCategoryId(String projectCode, String categoryId);
+
+    List<RequestForQuotation> listAllDraftedRFQsForProjectCodeAndCategoryId(String projectCode, String categoryId);
+
+    RequestForQuotation getRFQDetailsByRFQId(Long rfqId);
+
+    void approveRFQByRFQId(Long rfqId);
 }

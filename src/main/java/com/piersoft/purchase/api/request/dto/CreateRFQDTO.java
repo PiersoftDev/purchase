@@ -14,11 +14,13 @@ import java.time.LocalDate;
 public class CreateRFQDTO {
 
     private String projectId;
-    private String ProjectCode;
+    private String projectDesc;
     private String categoryId;
-    private String category;
+    private String categoryDesc;
     private LocalDate plannedDate;
     private String warehouseId;
-    private String warehouseCode;
+    private String warehouseDesc;
+    private String status;
+    private LocalDate createdDate = LocalDate.now();
 
 }
